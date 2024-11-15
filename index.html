@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>عبدالله محمد - حساب السعرات الحرارية</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            direction: rtl;
+            background-color: #f3f4f6;
+            color: #333;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #007BFF;
+        }
+        input {
+            width: 90%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .result {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>حساب السعرات الحرارية</h1>
+        <p>أدخل الوزن والطول لمعرفة السعرات الحرارية الأساسية واقتراح وجبة</p>
+        <form id="calorieForm">
+            <input type="number" id="weight" placeholder="الوزن بالكيلوجرام" required>
+            <input type="number" id="height" placeholder="الطول بالسنتيمتر" required>
+            <button type="button" onclick="calculateCalories()">احسب</button>
+        </form>
+        <div class="result" id="result"></div>
+    </div>
+
+    <script>
+        function calculateCalories() {
+            const weight = parseFloat(document.getElementById('weight').value);
+            const height = parseFloat(document.getElementById('height').value);
+
+            if (!weight || !height) {
+                alert("من فضلك أدخل القيم الصحيحة");
+                return;
+            }
+
+            const bmr = (10 * weight) + (6.25 * height) - 5 * 25; // العمر تقديري 25 سنة
+
+            const foods = [
+                "الكشري",
+                "الملوخية مع الأرز",
+                "الفول والطعمية",
+                "محشي ورق عنب",
+                "الكبدة الإسكندراني",
+                "شاورما دجاج"
+            ];
+            const randomFood = foods[Math.floor(Math.random() * foods.length)];
+
+            const resultDiv = document.getElementById('result');
+            resultDiv.innerHTML = `
+                <p>السعرات الحرارية الأساسية: <strong>${bmr.toFixed(2)}</strong> سعر حراري</p>
+                <p>لزيادة السعرات، جرب: <strong>${randomFood}</strong></p>
+            `;
+        }
+    </script>
+</body>
+</html>
